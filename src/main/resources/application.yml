@@ -1,0 +1,43 @@
+server:
+  port: 8090
+  servlet:
+    # v1 为版本号
+    context-path: /information-lyt/v1
+
+spring:
+  # 数据库配置
+  datasource:
+    ## 数据库的账户名
+    username: root
+    ## 数据库的密码
+    password: 123456
+    ## 数据库地址，修改IP部分即可
+    url: jdbc:mysql://127.0.0.1:3306/information_lyt?characterEncoding=utf8&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+#################################################################
+# [Warning] 以下部分不允许手工修改，只允许开发人员调试使用
+# mybatis映射文件
+mybatis:
+  mapper-locations: classpath:mybatis/mappers/*.xml
+
+# 打印SQL日志
+logging:
+  level:
+    com.joy.informationlyt.domain.mapper: debug
+
+# JWT认证体系
+jwtparam:
+  issuer: ec8b63c05f999a15a8c8567002a560a8
+  audience: 541bee7d2a922cc0a81ff4ca3c23f4af
+  TTLMillis: 3600000
+  base64Security: JXU4RDM1JXU3MTY0JXU4QkJFJXU4QkEx1
+
+# 线程池环境配置
+task:
+  pool:
+    corePoolSize: 16
+    maxPoolSize: 32
+    keepAliveSeconds: 300
+    #queueCapacity: 8
+
