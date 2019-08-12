@@ -28,6 +28,12 @@ public class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "JDBC")
     private Long id;
 
+
+    /**
+     * 是否删除
+     */
+    private Boolean isDelete = false;
+
     /**
      * 创建时间
      */

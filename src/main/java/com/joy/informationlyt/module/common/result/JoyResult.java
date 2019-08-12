@@ -76,6 +76,14 @@ public class JoyResult implements Serializable {
         );
     }
 
+    public static JoyResult buildFailedResult(Notice notice){
+        return new JoyResult(notice,
+                notice.getMessage(),
+                false,
+                null
+        );
+    }
+
     public static JoyResult buildFailedResult(String detailMessage){
         return new JoyResult(Notice.EXECUTE_IS_FAILED,
                 detailMessage,

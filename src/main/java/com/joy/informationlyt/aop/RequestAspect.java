@@ -24,7 +24,7 @@ public class RequestAspect {
     private static Logger log = LoggerFactory.getLogger(RequestAspect.class);
 
 
-    @Around("within(com.xxfy.informatizationlyt.*.web.*)")
+    @Around("within(com.joy.informationlyt.module.*.web.*)")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable{
         // Get Request URI
         HttpServletRequest request = getRequest(joinPoint);
@@ -34,12 +34,6 @@ public class RequestAspect {
         MethodSignature signature = (MethodSignature)joinPoint.getSignature();
         Method method = signature.getMethod();
         log.info("请求方法: {}.{}", method.getDeclaringClass().getName(),method.getName());
-//        if(args!= null && args.length > 0){
-//            String parameterString = JSONObject.toJSONString(args[0], SerializerFeature.WriteMapNullValue);
-//            log.info("请求参数: {}", parameterString);
-//        }else{
-//            log.info("请求参数: null");
-//        }
 
         log.info("args={}", joinPoint.getArgs());
 

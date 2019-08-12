@@ -1,16 +1,14 @@
-package com.joy.informationlyt.module.system.enums;
+package com.joy.informationlyt.module.user.enums;
 
-public enum UserType {
-
-    ADMIN("ADMIN","系统管理员"),
-
-    COMMON("COMMON","普通用户");
-
+/**
+ * 记录状态
+ */
+public enum UserStatus {
+    START("START","启用"), STOP("STOP","停用");
     private String name;
-
     private String describe;
 
-    UserType(String name, String describe) {
+    UserStatus(String name, String describe) {
         this.name = name;
         this.describe = describe;
     }

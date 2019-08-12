@@ -2,6 +2,7 @@ package com.joy.informationlyt.exception;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.mybatis.spring.MyBatisExceptionTranslator;
 import org.mybatis.spring.MyBatisSystemException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessResourceUsageException;
@@ -60,7 +61,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
             mv.setView(mjjv);
             return mv;
         }
-        if (ex instanceof MyBatisSystemException || ex instanceof MyBatisSystemException || ex instanceof InvalidDataAccessResourceUsageException) {
+        if (ex instanceof MyBatisSystemException || ex instanceof InvalidDataAccessResourceUsageException) {
             ModelAndView mv = new ModelAndView();
             MappingJackson2JsonView mjjv = new MappingJackson2JsonView();
             Map<String, Object> map = new HashMap<String, Object>();

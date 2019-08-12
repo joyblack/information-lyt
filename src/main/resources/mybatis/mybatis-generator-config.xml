@@ -13,16 +13,16 @@
                         connectionURL="jdbc:mysql://127.0.0.1/information_lyt" userId="root"
                         password="123456" />
 
-        <javaModelGenerator targetPackage="com.joy.informationlyt.domain.entity"
+        <javaModelGenerator targetPackage="com.joy.informationlyt.temp.entity"
                             targetProject="src\main\java" />
 
         <sqlMapGenerator targetPackage="mybatis.mappers"
                          targetProject="src\main\resources" />
 
-        <javaClientGenerator targetPackage="com.joy.informationlyt.domain.mapper"
+        <javaClientGenerator targetPackage="com.joy.informationlyt.temp.mapper"
                              targetProject="src\main\java" type="XMLMAPPER" />
 
-        <table schema="information_lyt" tableName="all_user" domainObjectName="User"
+        <table schema="information_lyt" tableName="all_department" domainObjectName="Department"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false">
         </table>

@@ -1,4 +1,4 @@
-package com.joy.informationlyt.module.system.enums;
+package com.joy.informationlyt.module.user.enums;
 
 /**
  * 性别
