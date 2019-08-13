@@ -10,6 +10,12 @@ public class StringUtil {
         }
         return false;
     }
+    public static boolean isNotEmpty(String value) {
+        if ((value != null) && (!value.equals(""))) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 判断两字符串是否相等

@@ -19,4 +19,14 @@
     status, remark
   </sql>
 
+  <select id="selectOneByIdNumberAndIdNot" resultType="com.joy.informationlyt.domain.entity.User">
+        SELECT * FROM all_user
+        WHERE id != #{id} AND id_number != #{idNumber}
+  </select>
+
+  <select id="selectOneByPhoneAndIdNot" resultType="com.joy.informationlyt.domain.entity.User">
+        SELECT * FROM all_user
+        WHERE id != #{id} AND phone != #{phone}
+  </select>
+
 </mapper>

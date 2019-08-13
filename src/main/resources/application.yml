@@ -1,43 +1,42 @@
 server:
   port: 8090
   servlet:
-    # v1 Îª°æ±¾ºÅ
+    # v1 ä¸ºç‰ˆæœ¬å·
     context-path: /information-lyt/v1
 
 spring:
-  # Êı¾İ¿âÅäÖÃ
+  # æ•°æ®åº“é…ç½®
   datasource:
-    ## Êı¾İ¿âµÄÕË»§Ãû
+    ## æ•°æ®åº“çš„è´¦æˆ·å
     username: root
-    ## Êı¾İ¿âµÄÃÜÂë
+    ## æ•°æ®åº“çš„å¯†ç 
     password: 123456
-    ## Êı¾İ¿âµØÖ·£¬ĞŞ¸ÄIP²¿·Ö¼´¿É
-    url: jdbc:mysql://127.0.0.1:3306/information_lyt?characterEncoding=utf8&serverTimezone=GMT
+    ## æ•°æ®åº“åœ°å€ï¼Œä¿®æ”¹IPéƒ¨åˆ†å³å¯
+    url: jdbc:mysql://127.0.0.1:3306/information_lyt?characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 #################################################################
-# [Warning] ÒÔÏÂ²¿·Ö²»ÔÊĞíÊÖ¹¤ĞŞ¸Ä£¬Ö»ÔÊĞí¿ª·¢ÈËÔ±µ÷ÊÔÊ¹ÓÃ
-# mybatisÓ³ÉäÎÄ¼ş
+# [Warning] ä»¥ä¸‹éƒ¨åˆ†ä¸å…è®¸æ‰‹å·¥ä¿®æ”¹ï¼Œåªå…è®¸å¼€å‘äººå‘˜è°ƒè¯•ä½¿ç”¨
+# mybatisæ˜ å°„æ–‡ä»¶
 mybatis:
   mapper-locations: classpath:mybatis/mappers/*.xml
 
-# ´òÓ¡SQLÈÕÖ¾
+# æ‰“å°SQLæ—¥å¿—
 logging:
   level:
     com.joy.informationlyt.domain.mapper: debug
 
-# JWTÈÏÖ¤ÌåÏµ
+# JWTè®¤è¯ä½“ç³»
 jwtparam:
   issuer: ec8b63c05f999a15a8c8567002a560a8
   audience: 541bee7d2a922cc0a81ff4ca3c23f4af
   TTLMillis: 3600000
   base64Security: JXU4RDM1JXU3MTY0JXU4QkJFJXU4QkEx1
 
-# Ïß³Ì³Ø»·¾³ÅäÖÃ
+# çº¿ç¨‹æ± ç¯å¢ƒé…ç½®
 task:
   pool:
     corePoolSize: 16
     maxPoolSize: 32
     keepAliveSeconds: 300
     #queueCapacity: 8
-

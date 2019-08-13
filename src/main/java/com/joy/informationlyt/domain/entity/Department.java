@@ -6,11 +6,10 @@ import lombok.ToString;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Table(name = "all_department")
 @Data
-@ToString
+@ToString(callSuper = true)
 public class Department extends BaseEntity{
 
     /**
@@ -40,15 +39,36 @@ public class Department extends BaseEntity{
      */
     private String phone;
 
-    @Override
-    public String toString() {
-        return "Department{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", parentId=" + parentId +
-                ", responseUser='" + responseUser + '\'' +
-                ", phone='" + phone + '\'' +
-                "remark = " + getRemark() +
-                '}';
+
+    public static interface PositionMapper {
+        int deleteByPrimaryKey(Long id);
+
+        int insert(Position record);
+
+        int insertSelective(Position record);
+
+        Position selectByPrimaryKey(Long id);
+
+        int updateByPrimaryKeySelective(Position record);
+
+        int updateByPrimaryKeyWithBLOBs(Position record);
+
+        int updateByPrimaryKey(Position record);
+    }
+
+    public static interface StaffMapper {
+        int deleteByPrimaryKey(Long id);
+
+        int insert(Staff record);
+
+        int insertSelective(Staff record);
+
+        Staff selectByPrimaryKey(Long id);
+
+        int updateByPrimaryKeySelective(Staff record);
+
+        int updateByPrimaryKeyWithBLOBs(Staff record);
+
+        int updateByPrimaryKey(Staff record);
     }
 }

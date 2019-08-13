@@ -1,7 +1,5 @@
 package com.joy.informationlyt.domain.entity;
 
-import com.joy.informationlyt.module.user.enums.UserStatus;
-import com.joy.informationlyt.module.user.enums.UserType;
 import lombok.Data;
 import lombok.ToString;
 
@@ -11,8 +9,9 @@ import javax.validation.constraints.NotEmpty;
 
 @Table(name = "all_user")
 @Data
-@ToString
+@ToString(callSuper = true)
 public class User extends BaseEntity{
+
 
     private String idNumber;
 
@@ -29,10 +28,7 @@ public class User extends BaseEntity{
 
     private String name;
 
-    private UserType type = UserType.ADMIN;
+    private Integer type;
 
-    private UserStatus status = UserStatus.START;
-
-
-
+    private Integer status;
 }

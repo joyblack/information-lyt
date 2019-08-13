@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.joy.informationlyt.domain.mapper.StaffMapper" >
+  <resultMap id="BaseResultMap" type="com.joy.informationlyt.domain.entity.Staff" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="archive" property="archive" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="nationality" property="nationality" jdbcType="VARCHAR" />
+    <result column="birth_date" property="birthDate" jdbcType="TIMESTAMP" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="education" property="education" jdbcType="INTEGER" />
+    <result column="account_character" property="accountCharacter" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+    <result column="department_id" property="departmentId" jdbcType="BIGINT" />
+    <result column="position_id" property="positionId" jdbcType="BIGINT" />
+    <result column="entry_time" property="entryTime" jdbcType="TIMESTAMP" />
+    <result column="insured" property="insured" jdbcType="INTEGER" />
+    <result column="insured_time" property="insuredTime" jdbcType="TIMESTAMP" />
+    <result column="physical_examination_hospital" property="physicalExaminationHospital" jdbcType="VARCHAR" />
+    <result column="physical_examination_time" property="physicalExaminationTime" jdbcType="TIMESTAMP" />
+    <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
+    <result column="graduation_college" property="graduationCollege" jdbcType="VARCHAR" />
+    <result column="graduation_time" property="graduationTime" jdbcType="TIMESTAMP" />
+    <result column="professsion" property="professsion" jdbcType="VARCHAR" />
+    <result column="remuneration" property="remuneration" jdbcType="DECIMAL" />
+    <result column="introducer" property="introducer" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, update_time, is_delete, archive, name, sex, nationality, birth_date,
+    id_number, education, account_character, phone, home_address, department_id, position_id, 
+    entry_time, insured, insured_time, physical_examination_hospital, physical_examination_time, 
+    native_place, graduation_college, graduation_time, professsion, remuneration, introducer, 
+    status,remark
+  </sql>
+
+</mapper>

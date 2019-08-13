@@ -5,7 +5,7 @@ import com.joy.informationlyt.domain.entity.Department;
 import com.joy.informationlyt.domain.mapper.DepartmentMapper;
 import com.joy.informationlyt.module.common.result.JoyResult;
 import com.joy.informationlyt.module.common.result.Notice;
-import com.joy.informationlyt.utils.UpdateUtil;
+import com.joy.informationlyt.utils.JoyBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +52,7 @@ public class DepartmentService {
             return JoyResult.buildFailedResult(Notice.DEPARTMENT_NAME_HAS_EXIST);
         }
         // 将数据库的数据对应拷贝到目标对象的空值属性上，其余的保持目标属性的不变。
-        UpdateUtil.copyProperties(oldDept, department);
+        JoyBeanUtil.copyPropertiesIgnoreTargetNotNullProperties(oldDept, department);
         departmentMapper.updateByPrimaryKeySelective(department);
         return JoyResult.buildSuccessResultWithData(department);
     }

@@ -32,7 +32,7 @@ public class BaseEntity implements Serializable {
     /**
      * 是否删除
      */
-    private Boolean isDelete = false;
+    private Boolean isDelete;
 
     /**
      * 创建时间
@@ -40,9 +40,8 @@ public class BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @NotNull(message = "修改时间不能为空")
-
     private Date createTime = new Date();
 
     /**
@@ -52,7 +51,7 @@ public class BaseEntity implements Serializable {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @NotNull(message = "修改时间不能为空")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime = new Date();
 
     /**
