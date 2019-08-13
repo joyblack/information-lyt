@@ -18,8 +18,22 @@ spring:
 #################################################################
 # [Warning] 以下部分不允许手工修改，只允许开发人员调试使用
 # mybatis映射文件
+#mybatis&&通用Mapper
 mybatis:
+  type-aliases-package: com.joy.information.domain.entity
   mapper-locations: classpath:mybatis/mappers/*.xml
+#mapper:
+#  mappers=com.karle.tk.TkMapper
+#  mapper.identity=MYSQL
+#
+  #分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: countSql
+  page-size-zero:
+
 
 # 打印SQL日志
 logging:
@@ -33,10 +47,3 @@ jwtparam:
   TTLMillis: 3600000
   base64Security: JXU4RDM1JXU3MTY0JXU4QkJFJXU4QkEx1
 
-# 线程池环境配置
-task:
-  pool:
-    corePoolSize: 16
-    maxPoolSize: 32
-    keepAliveSeconds: 300
-    #queueCapacity: 8

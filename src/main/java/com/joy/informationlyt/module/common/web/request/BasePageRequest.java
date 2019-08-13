@@ -1,5 +1,11 @@
 package com.joy.informationlyt.module.common.web.request;
 
+import com.joy.informationlyt.utils.StringUtil;
+import lombok.Data;
+import lombok.ToString;
+
+@Data
+@ToString
 public class BasePageRequest {
 
     private int page = 1;
@@ -10,27 +16,16 @@ public class BasePageRequest {
      */
     private String search;
 
-    public int getPage() {
-        return page;
+    private String sort;
+
+    private String order;
+
+    public String getOrderByString(){
+        if(StringUtil.isEmpty(sort)){
+            return null;
+        }else{
+            return StringUtil.toLine(sort) + " " + order;
+        }
     }
 
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public String getSearch() {
-        return search;
-    }
-
-    public void setSearch(String search) {
-        this.search = search;
-    }
 }

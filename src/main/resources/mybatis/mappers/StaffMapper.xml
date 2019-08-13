@@ -26,7 +26,7 @@
     <result column="native_place" property="nativePlace" jdbcType="VARCHAR" />
     <result column="graduation_college" property="graduationCollege" jdbcType="VARCHAR" />
     <result column="graduation_time" property="graduationTime" jdbcType="TIMESTAMP" />
-    <result column="professsion" property="professsion" jdbcType="VARCHAR" />
+    <result column="profession" property="professsion" jdbcType="VARCHAR" />
     <result column="remuneration" property="remuneration" jdbcType="DECIMAL" />
     <result column="introducer" property="introducer" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -36,7 +36,7 @@
     id, create_time, update_time, is_delete, archive, name, sex, nationality, birth_date,
     id_number, education, account_character, phone, home_address, department_id, position_id, 
     entry_time, insured, insured_time, physical_examination_hospital, physical_examination_time, 
-    native_place, graduation_college, graduation_time, professsion, remuneration, introducer, 
+    native_place, graduation_college, graduation_time, profession, remuneration, introducer,
     status,remark
   </sql>
 

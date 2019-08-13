@@ -31,7 +31,7 @@
         <javaClientGenerator targetPackage="com.joy.informationlyt.domain.mapper"
                              targetProject="src\main\java" type="XMLMAPPER" />
 
-        <table schema="information_lyt" tableName="all_Staff" domainObjectName="Staff"
+        <table schema="information_lyt" tableName="all_storehouse" domainObjectName="Storehouse"
                enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false">
         </table>

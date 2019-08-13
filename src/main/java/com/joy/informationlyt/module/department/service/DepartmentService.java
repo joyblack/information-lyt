@@ -9,8 +9,10 @@ import com.joy.informationlyt.utils.JoyBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service
-public class DepartmentService {
+public class DepartmentService{
 
     @Autowired
     private DepartmentMapper departmentMapper;
@@ -29,6 +31,8 @@ public class DepartmentService {
             return JoyResult.buildFailedResult(Notice.DEPARTMENT_NAME_HAS_EXIST);
         }
         // insert department information.
+        department.setCreateTime(new Date());
+        department.setUpdateTime(new Date());
         departmentMapper.insertSelective(department);
         return JoyResult.buildSuccessResultWithData(department);
     }
@@ -53,6 +57,7 @@ public class DepartmentService {
         }
         // 将数据库的数据对应拷贝到目标对象的空值属性上，其余的保持目标属性的不变。
         JoyBeanUtil.copyPropertiesIgnoreTargetNotNullProperties(oldDept, department);
+        department.setUpdateTime(new Date());
         departmentMapper.updateByPrimaryKeySelective(department);
         return JoyResult.buildSuccessResultWithData(department);
     }
@@ -66,6 +71,7 @@ public class DepartmentService {
         Department deleteOrg = new Department();
         deleteOrg.setId(oldDept.getId());
         deleteOrg.setIsDelete(true);
+        deleteOrg.setUpdateTime(new Date());
         departmentMapper.updateByPrimaryKeySelective(deleteOrg);
         return JoyResult.buildSuccessResult("删除成功");
     }

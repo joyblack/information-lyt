@@ -17,8 +17,9 @@
     id, create_time, update_time, name, code, parent_id, response_user, phone, remark, is_delete
   </sql>
 
-  <select id="getDepartmentByParentIdAndName" resultType="com.joy.informationlyt.domain.entity.Department">
-        SELECT * FROM all_department WHERE parent_id = #{parentId} AND name = #{name} AND is_delete = 0
+  <select id="getDepartmentByParentIdAndName" resultMap="BaseResultMap">
+        SELECT *
+        FROM all_department WHERE parent_id = #{parentId} AND name = #{name} AND is_delete = 0 AND is_delete = 0
   </select>
 
 </mapper>

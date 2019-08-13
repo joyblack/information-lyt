@@ -2,6 +2,7 @@ package com.joy.informationlyt;
 
 import cn.hutool.json.JSONUtil;
 import com.joy.informationlyt.domain.entity.Department;
+import com.joy.informationlyt.domain.entity.Storehouse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +28,18 @@ public class GeneratorJsonTests {
         department.setResponseUser("jake");
         department.setRemark("备注信息");
         System.out.println( JSONUtil.toJsonPrettyStr(department));
+    }
+
+    @Test
+    public void storehouse() {
+        Storehouse obj = new Storehouse();
+        obj.setId(1L);
+        obj.setAdmin("administrator");
+        obj.setCode("123456");
+        obj.setName("一号仓库");
+        obj.setResponseUser("赵义");
+        obj.setStatus(0);
+        System.out.println( JSONUtil.toJsonPrettyStr(obj));
     }
 
 

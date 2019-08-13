@@ -1,26 +1,30 @@
 package com.joy.informationlyt.module.user.service;
 
-import com.joy.informationlyt.domain.entity.Department;
-import com.joy.informationlyt.exception.JoyException;
-import com.joy.informationlyt.module.common.result.JoyResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.joy.informationlyt.domain.entity.User;
 import com.joy.informationlyt.domain.mapper.UserMapper;
+import com.joy.informationlyt.exception.JoyException;
+import com.joy.informationlyt.module.common.result.JoyResult;
 import com.joy.informationlyt.module.common.result.Notice;
+import com.joy.informationlyt.module.common.service.BaseService;
+import com.joy.informationlyt.module.common.web.request.BasePageRequest;
 import com.joy.informationlyt.module.user.web.req.UpdateUserReq;
 import com.joy.informationlyt.utils.JoyBeanUtil;
 import com.joy.informationlyt.utils.MD5Util;
 import com.joy.informationlyt.utils.PhoneUtil;
 import com.joy.informationlyt.utils.StringUtil;
 import com.joy.informationlyt.utils.identity.IdNumberUtil;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.security.provider.MD5;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
-public class UserService {
+public class UserService extends BaseService<User> {
     @Autowired
     private UserMapper userMapper;
 
@@ -34,30 +38,33 @@ public class UserService {
         /**
          * 校验： 身份证号、手机号、登录名
          */
-        if(!IdNumberUtil.isIDNumber(user.getIdNumber())){
-            return JoyResult.buildFailedResult(Notice.IDENTITY_NUMBER_ERROR);
-        }
-
-        if(!PhoneUtil.isMobile(user.getPhone())){
-            return JoyResult.buildFailedResult(Notice.PHONE_ERROR);
-        }
-
         Example example = new Example(User.class);
-        example.createCriteria().andEqualTo("idNumber",user.getIdNumber());
-        User checkUser = userMapper.selectOneByExample(example);
-        if(null != checkUser){
-            return JoyResult.buildFailedResult(Notice.IDENTITY_NUMBER_ALREADY_EXIST);
+        User checkUser = new User();
+        if(user.getIdNumber()!= null ){
+            if(!IdNumberUtil.isIDNumber(user.getIdNumber())){
+                return JoyResult.buildFailedResult(Notice.IDENTITY_NUMBER_ERROR);
+            }
+
+            example.createCriteria().andEqualTo("idNumber",user.getIdNumber());
+            checkUser = userMapper.selectOneByExample(example);
+            if(null != checkUser){
+                return JoyResult.buildFailedResult(Notice.IDENTITY_NUMBER_ALREADY_EXIST);
+            }
+        }
+        if(user.getPhone() != null){
+            if(!PhoneUtil.isMobile(user.getPhone())){
+                return JoyResult.buildFailedResult(Notice.PHONE_ERROR);
+            }
+            example.clear();
+            example.createCriteria().andEqualTo("phone",user.getPhone());
+            checkUser = userMapper.selectOneByExample(example);;
+            if(null != checkUser){
+                throw new JoyException(Notice.PHONE_ALREADY_EXIST);
+            }
         }
 
         example.clear();
-        example.createCriteria().andEqualTo("phone",user.getPhone());
-        checkUser = userMapper.selectOneByExample(example);;
-        if(null != checkUser){
-            throw new JoyException(Notice.PHONE_ALREADY_EXIST);
-        }
-
-        example.clear();
-        example.createCriteria().andEqualTo("loginName",user.getPhone());
+        example.createCriteria().andEqualTo("loginName",user.getLoginName());
         checkUser = userMapper.selectOneByExample(example);;
         if(null != checkUser){
             throw new JoyException(Notice.LOGIN_NAME_ALREADY_EXIST);
@@ -65,7 +72,7 @@ public class UserService {
         // 密码
         user.setPassword(MD5Util.encode(user.getPassword()));
         // 保存数据
-        userMapper.insertSelective(user);
+        insertSelective(user);
         // 置空密码返回到客户端
         user.setPassword(null);
         return JoyResult.buildSuccessResultWithData(user);
@@ -109,10 +116,7 @@ public class UserService {
         updateUserReq.setPassword(MD5Util.encode(updateUserReq.getPassword()));
         // 拷贝属性到oldUser之上
         JoyBeanUtil.copyPropertiesIgnoreSourceNullProperties(updateUserReq, oldUser);
-        // 保存数据
-        oldUser.setUpdateTime(new Date());
-        userMapper.updateByPrimaryKeySelective(oldUser);
-
+        updateByPrimaryKeySelective(oldUser);
         // 获取最新的用户信息，置空密码
         oldUser.setPassword(null);
         return JoyResult.buildSuccessResultWithData(oldUser);
@@ -126,8 +130,32 @@ public class UserService {
         }
         User delete = new User();
         delete.setId(user.getId());
+        delete.setUpdateTime(new Date());
         delete.setIsDelete(true);
-        userMapper.updateByPrimaryKeySelective(delete);
+        updateByPrimaryKeySelective(delete);
         return JoyResult.buildSuccessResult("删除成功");
+    }
+
+    public JoyResult getList(BasePageRequest pageRequest) {
+        PageHelper.startPage(pageRequest.getPage(),pageRequest.getSize(), pageRequest.getOrderByString());
+        List<User> users = userMapper.selectBySearch(pageRequest.getSearch());
+        //List<User> users = userMapper.selectAll();
+        PageInfo<User> userPageInfo = new PageInfo<>(users);
+        return JoyResult.buildSuccessResultWithData(userPageInfo);
+
+    }
+
+    public JoyResult test(){
+        int recordNum = 100;
+        while(recordNum -- > 0){
+            User user = new User();
+            user.setPassword(MD5Util.encode("123456"));
+            user.setIdNumber("522401199401025931");
+            user.setLoginName("zhaoyi" + recordNum);
+            user.setPhone("13535565497");
+            user.setStatus(0);
+            insertSelective(user);
+        }
+        return JoyResult.buildSuccessResult("完成测试...");
     }
 }

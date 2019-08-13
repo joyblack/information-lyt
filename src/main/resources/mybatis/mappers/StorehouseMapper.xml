@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.joy.informationlyt.domain.mapper.StorehouseMapper" >
+  <resultMap id="BaseResultMap" type="com.joy.informationlyt.domain.entity.Storehouse" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="response_user" property="responseUser" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="admin" property="admin" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_time, update_time, is_delete, status, name, response_user, code, admin, remark
+  </sql>
+
+  <select id="selectOneByNameAndIdNot" resultMap="BaseResultMap">
+        SELECT * FROM all_storehouse
+        WHERE id != #{id} AND name = #{name} AND is_delete = 0
+  </select>
+
+  <select id="selectOneByName" resultMap="BaseResultMap">
+        SELECT * FROM all_storehouse
+        WHERE name = #{name} AND is_delete = 0
+  </select>
+
+</mapper>

@@ -18,20 +18,26 @@ public enum Notice{
 
 
     // user
-    USER_NOT_LOGIN("用户未登录", 10100),
-    USER_NOT_EXIST("用户信息不存在", 10101),
+    USER_NOT_LOGIN("用户未登录", 101000),
+    USER_NOT_EXIST("用户信息不存在", 101001),
 
 
     // department
-    DEPARTMENT_NOT_EXIST("部门信息不存在",10200),
-    DEPARTMENT_PARENT_NOT_EXIST("父部门信息不存在", 10201),
-    DEPARTMENT_NAME_HAS_EXIST("部门名称已存在", 10202),
+    DEPARTMENT_NOT_EXIST("部门信息不存在",102000),
+    DEPARTMENT_PARENT_NOT_EXIST("父部门信息不存在", 102001),
+    DEPARTMENT_NAME_HAS_EXIST("部门名称已存在", 102002),
 
+    // staff
+    STAFF_NOT_EXIST("员工信息不存在", 103000 ),
 
+    // position
+    POSITION_NOT_EXIST("职位信息不存在", 104000),
 
+    // store
+    STOREHOUSE_NOT_EXIST("仓库信息不存在", 104000),
+    STOREHOUSE_NAME_ALREADY_EXIST("仓库名称已存在", 104001),
+;
 
-
-    ;
     private String message;
     private int code;
 

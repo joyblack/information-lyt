@@ -16,7 +16,7 @@ import java.util.Date;
 @MappedSuperclass
 @Data
 @ToString
-public class BaseEntity implements Serializable {
+public abstract  class BaseEntity implements Serializable {
     private static final long serialVersionUID = -7164175002845216444L;
 
     public BaseEntity(){}
@@ -41,8 +41,7 @@ public class BaseEntity implements Serializable {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    @NotNull(message = "修改时间不能为空")
-    private Date createTime = new Date();
+    private Date createTime;
 
     /**
      * 修改时间
@@ -50,9 +49,8 @@ public class BaseEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @NotNull(message = "修改时间不能为空")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date updateTime = new Date();
+    private Date updateTime;
 
     /**
      * 备注

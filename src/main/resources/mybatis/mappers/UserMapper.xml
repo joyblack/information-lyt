@@ -11,22 +11,35 @@
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, create_time, update_time, id_number, login_name, password, phone, name, type, 
-    status, remark
+    status, remark, is_delete
   </sql>
 
-  <select id="selectOneByIdNumberAndIdNot" resultType="com.joy.informationlyt.domain.entity.User">
+  <select id="selectOneByIdNumberAndIdNot" resultMap="BaseResultMap">
         SELECT * FROM all_user
-        WHERE id != #{id} AND id_number != #{idNumber}
+        WHERE id != #{id} AND id_number != #{idNumber} AND is_delete = 0
   </select>
 
-  <select id="selectOneByPhoneAndIdNot" resultType="com.joy.informationlyt.domain.entity.User">
+  <select id="selectOneByPhoneAndIdNot" resultMap="BaseResultMap">
         SELECT * FROM all_user
-        WHERE id != #{id} AND phone != #{phone}
+        WHERE id != #{id} AND phone != #{phone} AND is_delete = 0
+  </select>
+
+  <select id="selectBySearch" resultMap="BaseResultMap">
+        SELECT * FROM all_user
+        WHERE  is_delete = 0
+        <if test="search != null and search != ''">
+            AND (login_name LIKE CONCAT('%',#{search}, '%')
+            OR name LIKE CONCAT('%',#{search}, '%')
+            OR phone LIKE CONCAT('%',#{search}, '%')
+            OR id_number LIKE CONCAT('%',#{search}, '%')
+            )
+        </if>
   </select>
 
 </mapper>

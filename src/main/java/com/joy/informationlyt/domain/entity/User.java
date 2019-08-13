@@ -12,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 @ToString(callSuper = true)
 public class User extends BaseEntity{
 
-
     private String idNumber;
 
     @NotEmpty(message = "登陆名不能为空")
